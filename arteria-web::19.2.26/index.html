@@ -1,0 +1,510 @@
+<!-- REFACTORED: ARTERIA // ART_PLATFORM + VEIN SYSTEM -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ARTERIA // ART_PLATFORM</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Teko:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+:root {
+    --bg: #111111;
+    --surface: #1a1a1a;
+    --surface-2: #222222;
+    --text-primary: #f5f5f5;
+    --text-secondary: #8a8a8a;
+    --accent: #ffffff;
+    --border: rgba(255,255,255,0.06);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Teko', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* Vein Background Layers */
+.vein-layer {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.vein-back {
+    filter: blur(8px);
+    opacity: 0.25;
+}
+
+.vein-front {
+    filter: blur(2px);
+    opacity: 0.45;
+}
+
+.content-wrapper {
+    position: relative;
+    z-index: 2;
+}
+
+/* Layout */
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 4vw;
+}
+
+.section {
+    padding: 12vh 0;
+    border-top: 1px solid var(--border);
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: var(--bg);
+    padding: 12px 28px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: #dcdcdc;
+}
+
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    border-color: rgba(255,255,255,0.2);
+    transform: translateY(-4px);
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+@media(max-width: 900px){
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
+
+.hero {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero h1 {
+    font-size: clamp(4rem, 12vw, 10rem);
+    line-height: 0.9;
+}
+
+.caption {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 0.1em;
+}
+
+footer {
+    border-top: 1px solid var(--border);
+    padding: 8vh 0;
+    text-align: center;
+}
+
+.footer-link {
+    font-family: 'Teko', sans-serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: var(--text-primary);
+    text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- VEIN SVG BACK -->
+<svg class="vein-layer vein-back" id="veins-back"></svg>
+
+<!-- VEIN SVG FRONT -->
+<svg class="vein-layer vein-front" id="veins-front"></svg>
+
+<div class="content-wrapper">
+
+<section class="hero container">
+    <div class="caption">Established 2026</div>
+    <h1>WE ARE<br>ARTERIA</h1>
+    <p style="max-width:600px; color:var(--text-secondary); margin-top:2rem;">
+        A unified protocol for analog, digital, and tokenized creative assets. 
+        Bridging physical matter and programmable ownership.
+    </p>
+</section>
+
+<section class="section container">
+    <div class="caption">Core Framework</div>
+    <h2 style="font-size:3rem; margin:1rem 0 3rem;">The 3-Asset Model</h2>
+    <div class="grid-3">
+        <div class="card">
+            <h3>1. Analog</h3>
+            <p style="color:var(--text-secondary); margin-top:1rem;">
+                Physical artifact — canvas, sculpture, print whatever shape -
+                Embed it with Vena our own tokenlike authentication and certification.
+            </p>
+        </div>
+        <div class="card">
+            <h3>2. Digital</h3>
+            <p style="color:var(--text-secondary); margin-top:1rem;">
+                High-resolution source files or licensed rights.
+                Distribute globally, store immutably.
+            </p>
+        </div>
+        <div class="card">
+            <h3>3. Token</h3>
+            <p style="color:var(--text-secondary); margin-top:1rem;">
+                Programmable ownership layer.
+                Fractional, DAO-enabled, royalty-aware.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="section container">
+    <div class="caption">Collaborative Engine</div>
+    <h2 style="font-size:3rem; margin:1rem 0 2rem;">Digital Atelier</h2>
+    <p style="max-width:600px; color:var(--text-secondary);">
+        Upcoming Browser-based workspace for remixing and evolving community assets. 
+        Drag, mutate, publish — art is never final.
+    </p>
+</section>
+
+<section class="section container">
+    <div class="caption">Documentation</div>
+    <h2 style="font-size:3rem; margin:1rem 0 2rem;">What Makes Arteria Different</h2>
+    <div class="grid-2">
+        <div>
+            <h3>Unified Asset Logic</h3>
+            <p style="color:var(--text-secondary); margin-top:1rem;">
+                Traditional art markets fragment value across physical objects, digital files, and speculative tokens.
+                Arteria treats these as a single structured entity. Every project exists simultaneously as:
+                Analog (matter), Digital (data), and Token (programmable ownership).
+            </p>
+        </div>
+        <div>
+            <h3>Evolution Instead of Listing</h3>
+            <p style="color:var(--text-secondary); margin-top:1rem;">
+                On Arteria, a work is not frozen at mint. A painting can evolve for example into a digital edit,
+                then into an audiovisual installation, then into a collective experience project.
+                Value grows not only in price — but in dimensional and crossmedia expansion.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="section container">
+    <div class="caption">Demo Project</div>
+    <h2 style="font-size:3rem; margin:1rem 0 2rem;">Sample Evolution: "ECHO SURFACE"</h2>
+    <div class="grid-3">
+        <div class="card">
+            <h3>Phase 1 — Analog</h3>
+            <p style="color:var(--text-secondary); margin-top:1rem;">
+                A large-scale abstract painting on canvas. Physical collectors acquire
+                the original object with embedded authentication.
+            </p>
+        </div>
+        <div class="card">
+            <h3>Phase 2 — Digital Mutation</h3>
+            <p style="color:var(--text-secondary); margin-top:1rem;">
+                The artist scans the painting and transforms it in Photoshop.
+                Layers are animated, colors tuned, fragments isolated.
+                A new digital state is published under version I.2.
+            </p>
+        </div>
+        <div class="card">
+            <h3>Phase 3 — Experience Layer</h3>
+            <p style="color:var(--text-secondary); margin-top:1rem;">
+                A sound artist adds an original audio composition.
+                The work becomes an immersive audiovisual piece —
+                installable in galleries or accessible online as a timed experience.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="section container">
+    <div class="caption">Ecosystem Logic</div>
+    <h2 style="font-size:3rem; margin:1rem 0 2rem;">How Artists & Collectors Benefit</h2>
+    <div class="grid-2">
+        <div>
+            <h3>For Artists</h3>
+            <p style="color:var(--text-secondary); margin-top:1rem;">
+                Artists retain programmable royalties across all future evolutions.
+                Each new version (visual edit, audio layer, VR adaptation)
+                creates additional monetization pathways without abandoning
+                the original work.
+            </p>
+            <p style="color:var(--text-secondary); margin-top:1rem;">
+                Collaboration becomes structural: contributors can receive
+                tokenized shares of future value generated by the expanded project.
+            </p>
+        </div>
+        <div>
+            <h3>For Collectors</h3>
+            <p style="color:var(--text-secondary); margin-top:1rem;">
+                Collectors invest not only in a static object but in a living system.
+                As the project evolves, ownership gains exposure to new formats,
+                new audiences, and new revenue streams.
+            </p>
+            <p style="color:var(--text-secondary); margin-top:1rem;">
+                Appreciation can occur through cultural impact,
+                expanded utility, licensing opportunities,
+                and collaborative growth — not solely speculative price movement.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="section container">
+    <div class="caption">Version History</div>
+    <h2 style="font-size:3rem; margin:1rem 0 2rem;">Simulated Project Evolution Log</h2>
+    <div class="grid-3">
+        <div class="card">
+            <h3>vI.0 — Origin State</h3>
+            <p style="color:var(--text-secondary); margin-top:1rem;">
+                Analog painting completed and authenticated.
+                Token minted representing unified ownership structure.
+                Initial collector acquisition.
+            </p>
+        </div>
+        <div class="card">
+            <h3>vI.1 — Digital Expansion</h3>
+            <p style="color:var(--text-secondary); margin-top:1rem;">
+                High-resolution scan processed in Photoshop.
+                Color layers isolated and animated.
+                New digital asset layer published under minor update.
+            </p>
+        </div>
+        <div class="card">
+            <h3>vII.0 — Experience Upgrade</h3>
+            <p style="color:var(--text-secondary); margin-top:1rem;">
+                Audio composition integrated.
+                Work becomes immersive audiovisual installation.
+                Revenue channels expand (exhibition, streaming, licensing).
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="section container">
+    <div class="caption">Visual Timeline</div>
+    <h2 style="font-size:3rem; margin:1rem 0 3rem;">Dimensional Expansion Diagram</h2>
+
+    <div style="position:relative; padding-left:40px;">
+        <div style="position:absolute; left:10px; top:0; bottom:0; width:2px; background:rgba(255,255,255,0.15);"></div>
+
+        <div style="margin-bottom:4rem; position:relative;">
+            <h3>Analog Matter</h3>
+            <p style="color:var(--text-secondary); margin-top:0.5rem;">
+                Physical canvas → tangible ownership → cultural artifact.
+            </p>
+        </div>
+
+        <div style="margin-bottom:4rem; position:relative;">
+            <h3>Digital Mutation</h3>
+            <p style="color:var(--text-secondary); margin-top:0.5rem;">
+                File layers → edits → animation → expanded accessibility.
+            </p>
+        </div>
+
+        <div style="position:relative;">
+            <h3>Experience System</h3>
+            <p style="color:var(--text-secondary); margin-top:0.5rem;">
+                Sound + space + interaction → installation → immersive environment.
+                The artwork transforms into a modular cultural system.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="section container">
+    <div class="caption">System Protocol</div>
+    <h2 style="font-size:3rem; margin:1rem 0 2rem;">Update & Governance Framework</h2>
+    <div class="grid-3">
+        <div class="card">
+            <h3>Semantic Versioning</h3>
+            <p style="color:var(--text-secondary); margin-top:1rem;">
+                Major = dimensional shift (object → experience).
+                Minor = expansion layer (visual edit, audio layer).
+                Patch = technical refinement.
+                All states remain historically accessible.
+            </p>
+        </div>
+        <div class="card">
+            <h3>Contribution Proposals</h3>
+            <p style="color:var(--text-secondary); margin-top:1rem;">
+                Artists submit evolution proposals.
+                Collectors or governance vote on expansion paths.
+                Approved updates redistribute future value via protocol rules.
+            </p>
+        </div>
+        <div class="card">
+            <h3>Transparent Change Log</h3>
+            <p style="color:var(--text-secondary); margin-top:1rem;">
+                Every structural change is documented before deployment.
+                Arteria itself follows version history — just like its projects.
+            </p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <a href="#" class="footer-link">ENTER ARTERIA</a>
+</footer>
+
+</div>
+
+<script>
+const front = document.getElementById('veins-front');
+const back = document.getElementById('veins-back');
+
+function resizeSVG(svg){
+    svg.setAttribute('width', window.innerWidth);
+    svg.setAttribute('height', window.innerHeight);
+}
+resizeSVG(front);
+resizeSVG(back);
+window.addEventListener('resize', ()=>{
+    resizeSVG(front);
+    resizeSVG(back);
+});
+
+// ===== SEEDED TREE-STYLE VEIN SYSTEM =====
+
+// --- Seeded random generator ---
+function mulberry32(a) {
+    return function() {
+        var t = a += 0x6D2B79F5;
+        t = Math.imul(t ^ t >>> 15, t | 1);
+        t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+        return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    }
+}
+
+// predefined aesthetic seeds
+const seeds = [
+    84721,
+    19302,
+    55491,
+    77834,
+    99012,
+    32177
+];
+
+const chosenSeed = seeds[Math.floor(Math.random()*seeds.length)];
+const rand = mulberry32(chosenSeed);
+
+function createBranch(x, y, angle, length, depth, maxDepth, group){
+    if(depth > maxDepth) return;
+
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+    const x2 = x + Math.cos(angle) * length;
+    const y2 = y + Math.sin(angle) * length;
+
+    const cx = x + Math.cos(angle)*(length*0.5) + (rand()-0.5)*60;
+    const cy = y + Math.sin(angle)*(length*0.5) + (rand()-0.5)*60;
+
+    const d = `M ${x} ${y} Q ${cx} ${cy}, ${x2} ${y2}`;
+
+    path.setAttribute("d", d);
+    path.setAttribute("fill", "none");
+    path.setAttribute("stroke", "white");
+    path.setAttribute("stroke-linecap", "round");
+    path.setAttribute("stroke-width", Math.max(0.5, 2.6 - depth*0.4));
+
+    const approxLength = length * 1.3;
+    path.style.strokeDasharray = approxLength;
+    path.style.strokeDashoffset = approxLength;
+    path.style.transition = "stroke-dashoffset 14s ease-out";
+
+    group.appendChild(path);
+
+    setTimeout(()=>{
+        path.style.strokeDashoffset = 0;
+    }, depth * 500);
+
+    // subtle breathing pulse
+    setInterval(()=>{
+        path.style.filter = "drop-shadow(0 0 5px rgba(255,255,255,0.35))";
+        setTimeout(()=> path.style.filter="none", 900);
+    }, 7000 + depth*400);
+
+    // branching structure
+    const branchCount = depth < 2 ? 2 : (rand() > 0.5 ? 2 : 1);
+    for(let i=0;i<branchCount;i++){
+        const newAngle = angle + (rand()*0.9 - 0.45);
+        const newLength = length * (0.65 + rand()*0.15);
+        createBranch(x2, y2, newAngle, newLength, depth+1, maxDepth, group);
+    }
+}
+
+function generateTree(layer, scaleFactor){
+    const startX = window.innerWidth * (0.25 + rand()*0.5);
+    const startY = window.innerHeight + 40;
+    const trunkLength = window.innerHeight * scaleFactor;
+
+    createBranch(startX, startY, -Math.PI/2, trunkLength, 0, 6, layer);
+}
+
+// clear layers
+afterResize();
+function afterResize(){
+    front.innerHTML = "";
+    back.innerHTML = "";
+
+    generateTree(back, 0.45);
+    generateTree(front, 0.38);
+}
+
+window.addEventListener('resize', afterResize);
+
+// subtle parallax
+window.addEventListener('scroll', ()=>{
+    const scroll = window.scrollY;
+    front.style.transform = `translateY(${scroll*0.12}px)`;
+    back.style.transform = `translateY(${scroll*0.06}px)`;
+});
+</script>
+
+</body>
+</html>
